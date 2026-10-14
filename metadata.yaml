@@ -2,3 +2,4 @@ name: bili_platform_aux
 desc: Auxiliary AstrBot plugin for an existing 380nm Bilibili dynamic publishing platform.
 author: astrbot_plugin_bili_platform_aux contributors
 version: 0.8.0
+repo: https://github.com/fansky-ovo/astrbot_plugin_bili_platform_aux

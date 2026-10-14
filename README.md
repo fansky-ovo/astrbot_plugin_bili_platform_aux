@@ -36,9 +36,9 @@ WebUI 中的 `sid` 会明文保存在 AstrBot 的配置文件中；本插件保�
 | `/bd upload` | 上传当前消息图片 |
 | `/bd preview <正文>` | 预览发布内容 |
 | `/bd confirm` | 确认草稿并创建平台任务 |
-| `/bd schedule <时间> || <正文>` | 创建定时任务 |
+| `/bd schedule <时间> \|\| <正文>` | 创建定时任务 |
 | `/bd queue`、`/bd job <任务ID>` | 查询平台任务 |
-| `/bd notify on|off` | 开关结果通知 |
+| `/bd notify on`、`/bd notify off` | 开关结果通知 |
 
 部分命令会直接创建或修改平台任务，使用前请阅读 [完整手册](USAGE.md)。密码登录默认关闭。
 
