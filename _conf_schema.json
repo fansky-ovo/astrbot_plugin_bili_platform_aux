@@ -1,0 +1,145 @@
+{
+  "platform_url": {
+    "description": "380nm 平台地址",
+    "type": "string",
+    "hint": "默认 https://bilidyn.basmc.org 。填写根地址即可，插件会自动拼接 /api。",
+    "default": "https://bilidyn.basmc.org"
+  },
+  "allowed_hosts": {
+    "description": "平台主机白名单",
+    "type": "string",
+    "hint": "逗号分隔。只有列表内的主机允许登录；留空表示不限制（不建议）。",
+    "default": "bilidyn.basmc.org"
+  },
+  "sid": {
+    "description": "平台会话 sid",
+    "type": "string",
+    "hint": "可选。粘贴 380nm 平台 Cookie 里 sid 的**值**即可（不用带 sid= 前缀；粘贴 sid=xxx、带引号的值或整条 Cookie 字符串也能识别）后，仅白名单会话中的用户第一次使用 /bd 时会自动建立加密会话，等价于 BILI_PLATFORM_SID。获取方式：浏览器登录平台 → F12 → Application/Cookies → 复制 sid。注意：AstrBot 会把插件配置明文保存在 data/config/<插件>_config.json，更在意安全请改用环境变量或 admin_cli.py set-session。",
+    "default": "",
+    "obvious_hint": true
+  },
+  "platform_username": {
+    "description": "平台账号名（展示用）",
+    "type": "string",
+    "hint": "仅用于 /bd status 展示和审计，不参与登录。",
+    "default": ""
+  },
+  "account_id": {
+    "description": "默认 B站发布账号 ID",
+    "type": "string",
+    "hint": "留空则使用平台上的第一个账号。用 /bd accounts 查看可用 ID。建议固定成专用账号。",
+    "default": ""
+  },
+  "template_id": {
+    "description": "默认模板 ID",
+    "type": "string",
+    "hint": "留空则自动使用/创建「AstrBot 直发」模板（{{text}}）。用 /bd templates 查看。",
+    "default": ""
+  },
+  "title": {
+    "description": "默认动态标题",
+    "type": "string",
+    "hint": "平台限制最多 20 字，留空表示不带标题。",
+    "default": ""
+  },
+  "topic_id": {
+    "description": "默认话题 ID",
+    "type": "string",
+    "hint": "与话题名配套，两个都填才生效。",
+    "default": ""
+  },
+  "topic_name": {
+    "description": "默认话题名",
+    "type": "string",
+    "hint": "不带 # 号，例如 原创插画。",
+    "default": ""
+  },
+  "task_type": {
+    "description": "默认内容类型",
+    "type": "string",
+    "hint": "平台任务类型，用于区分原创/转载。",
+    "options": [
+      "原创",
+      "转载"
+    ],
+    "default": "原创"
+  },
+  "variables_json": {
+    "description": "默认模板变量（JSON）",
+    "type": "text",
+    "hint": "例如 {\"extra\":\"来源已授权\"}。正文 text 由命令内容覆盖。",
+    "default": ""
+  },
+  "slots_json": {
+    "description": "默认署名槽位（JSON）",
+    "type": "text",
+    "hint": "对应平台模板的署名插槽，例如 {\"translator\":\"某某\"}。",
+    "default": ""
+  },
+  "max_upload_bytes": {
+    "description": "单张图片上限（字节）",
+    "type": "int",
+    "hint": "平台硬限制 20971520（20MB），这里只能调低，不会突破平台限制。",
+    "default": 20971520
+  },
+  "group_write_admin_only": {
+    "description": "群聊写操作仅管理员可用",
+    "type": "bool",
+    "hint": "关闭后群成员也能上传/发布/编辑/操作任务，私聊始终不受限。",
+    "default": true
+  },
+  "allow_password_login": {
+    "description": "允许 /bd login 密码登录",
+    "type": "bool",
+    "hint": "默认关闭。仅建议临时排障时开启，密码只用于一次登录请求、不会持久化。",
+    "default": false
+  },
+  "notify_enabled": {
+    "description": "发布结果通知默认开启",
+    "type": "bool",
+    "hint": "任务变 published/failed 时推送；用户仍可用 /bd notify off 单独关闭。",
+    "default": true
+  },
+  "notify_interval_seconds": {
+    "description": "通知轮询间隔（秒）",
+    "type": "int",
+    "hint": "最小 5 秒。多个用户时每轮都会查询一次平台任务列表，不要设得太小。",
+    "default": 20
+  },
+  "require_title": {
+    "description": "标题必填",
+    "type": "bool",
+    "hint": "开启后，缺少标题不会创建任务，会先提示补齐（用户明确说不要标题时用 /bd title 无 记录）。",
+    "default": false
+  },
+  "require_topic": {
+    "description": "话题标签必填",
+    "type": "bool",
+    "hint": "开启后，缺少话题标签不会创建任务，会先提示补齐；不要话题时用 /bd topic skip 记录。",
+    "default": false
+  },
+  "preview_card": {
+    "description": "预览时发送渲染卡片",
+    "type": "bool",
+    "hint": "开启后 /bd preview 与 bili_platform_preview 会把预览渲染成一张图片发给用户。",
+    "default": true
+  },
+  "preview_footer": {
+    "description": "预览卡片底部文字",
+    "type": "string",
+    "hint": "例如 IP属地：江苏。留空则不显示。",
+    "default": ""
+  },
+  "preview_avatar": {
+    "description": "左上角头像兜底图",
+    "type": "string",
+    "hint": "左上角默认使用待发布账号的 B站头像；只有该账号在平台上没有头像时才用这里的图片。填 URL 或服务器本地路径，也可把 avatar.png 放到数据目录 resources/ 下自动生效。",
+    "default": ""
+  },
+  "shared_session_whitelist": {
+    "description": "共享账号会话白名单",
+    "type": "string",
+    "default": "",
+    "hint": "逗号或换行分隔的完整 unified_msg_origin，精确匹配群聊或私聊会话；空列表禁用共享账号。群聊授权不延伸到成员私聊。个人账号不受此限制。环境变量 BILI_PLATFORM_SHARED_SESSION_WHITELIST。"
+  }
+}

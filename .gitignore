@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+.venv/
+data/
+*.log
+.test-deps/
+
+# Local configuration, credentials and runtime artifacts
+.env
+.env.*
+!.env.example
+state.json
+secret.key
+*.pem
+*.key
+*.sqlite*
+dist/
+build/
+.pytest_cache/
+.coverage
+.DS_Store
+Thumbs.db
+# Local handoff records and screenshots (retain locally)
+MIGRATION.md
+docs/preview-sample*.png
